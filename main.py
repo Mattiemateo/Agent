@@ -3,8 +3,6 @@ from time import sleep
 from dotenv import load_dotenv
 import os
 
-os.system('cd ../..')
-
 # Load credentials from .env
 load_dotenv()
 USERNAME = os.getenv("USERNAME")
@@ -103,6 +101,7 @@ Call log:
 # Start the bot
 bot()
 
+#HiHi
 
 #https://pypi.org/project/pytesseract/
 
