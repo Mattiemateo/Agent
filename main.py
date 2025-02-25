@@ -85,21 +85,6 @@ def question_scrape():
     for element in elements:
         print(element)
 
-    
-'''
-   raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
-playwright._impl._errors.Error: Locator.click: Error: strict mode violation: locator(".css-180i3z1") resolved to 6 elements:
-    1) <span class="css-180i3z1">Doorgaan</span> aka get_by_role("listitem").filter(has_text="Dubbele haakjes wegwerken Doorgaan").get_by_label("Doorgaan")
-    2) <span class="css-180i3z1">Doorgaan</span> aka get_by_role("listitem").filter(has_text="3.4 (V) Merkwaardige").get_by_label("Doorgaan")
-    3) <span class="css-180i3z1">Beginnen</span> aka get_by_role("listitem").filter(has_text="(V) Wortels delen Beginnen").get_by_label("Beginnen")
-    4) <span class="css-180i3z1">Beginnen</span> aka get_by_role("listitem").filter(has_text="3.6 (V) Wortels met breuken").get_by_label("Beginnen")
-    5) <span class="css-180i3z1">Beginnen</span> aka get_by_role("listitem").filter(has_text="3.7 (V+) Werken met cirkels").get_by_label("Beginnen")
-    6) <span class="css-180i3z1">Beginnen</span> aka get_by_role("listitem").filter(has_text="3.8 (V+) Wortels uit de").get_by_label("Beginnen")
-
-Call log:
-  - waiting for locator(".css-180i3z1")
-'''
-
 # Start the bot
 bot()
 
