@@ -2,11 +2,12 @@ from playwright.sync_api import sync_playwright
 from time import sleep
 from dotenv import load_dotenv
 import os
+from PIL import Image
 
 # Load credentials from .env
-load_dotenv()
-USERNAME = os.getenv("USERNAME")
-PASSWORD = os.getenv("PASSWORD")
+load_dotenv("/Users/mateodevos/Code/secrets/.env")
+nummer = os.getenv("nummer")
+PW = os.getenv("PW")
 
 # Configuration
 HEADLESS = False
@@ -24,9 +25,8 @@ def bot():
         page.set_default_timeout(TIMEOUT)
 
         log_in()  # Call login function to start the process
-        #sleep(2)
         start_assignment()
-        sleep(2.5)
+        sleep(10)
         question_scrape()
 
         sleep(10000000)  # Keep the browser open
@@ -50,16 +50,16 @@ def log_in():
 
     print(f"Current URL: {new_page.url}")
 
-    sleep(1)
+    sleep(3)
     new_page.fill("input[name='wayf_search']", "Petrus")
     new_page.press("input[name='wayf_search']", "Enter")
 
     sleep(4)
-    new_page.fill("input[id='username']", USERNAME)
+    new_page.fill("input[id='username']", nummer)
     new_page.press("input[id='username']", "Enter")
 
     sleep(1)
-    new_page.fill("input[id='password']", PASSWORD)
+    new_page.fill("input[id='password']", PW)
     sleep(1)
     new_page.press("input[id='password']", "Enter")
     
@@ -78,24 +78,62 @@ def start_assignment():
 def question_scrape():
     print("scraping questions")
     new_page.screenshot(path="screenshot.png")
+    im = Image.open(r"equation.png")
+    left = 0
+    top = 0
+    right = 850
+    bottom = 400
+    im1 = im.crop((left, top, right, bottom))
+    im1.save("cropped.png")
+    
 
-    elements = page.locator('[class^="packages-bm-toolbox-src-gizmos-formula-Formula-components-MathML__mrow--W6auF packages-bm-toolbox-src-gizmos-formula-"]').all()
-    for element in elements:
-        print(element)
 
+    '''
+
+    elements = page.locator('[class^="packages-bm-toolbox-src-gizmos-formula-Formula-component"]').all()
+    print(elements)
+    for element in elements:  #proberen? ja. opnieuw?. Pak even de class van een element bij jou. Zullen we alle svg's met if statments doen? nee, eerst text doen ma
+        print(element)        #probeer de screenshot even met llama vision. .ik moest even all mijn apps sluiten voor RAM... haha
+        print('iets')         #hoe moet ik nu opzoeken hoe ik hem moet prompten
+                              # promt: extract the equation from this image. /imagepath
+                              #maar die image staat op jouw computer, mischien in dropbox zetten? gedaan
+                              #en hoe moet ik hem prompten bedoel ik mee, hoe geef ik hem de imagepath finder -> rightclick -> path ofzo
+                              #extract the eqaution form this image /Users/klaas/Library/CloudStorage/Dropb
+                                ./Dropbox/Mateo&klaas/cropped.png
+                                I don't see an image. Please provide the text of the equation, and I'll be
+                                happy to help you extract it.
+                                # hij werkt! Dank je well finder yay! Well erg sloom j
+                                a
+
+                                The equation in the image is:
+
+10^(-2) = 0.01
+10^(-3) = 0.001
+10^(-1) = 0.1
+10^(0) = 1
+10^(1) = 10
+10^(2) = 100
+10^(3) = 1000
+
+JAAAA dat is goed!
+Hoe gaan we die blokjes rond sluren?
+
+
+mischien kan een 3060 12gb dit sneller Ja, maar AMD werkt ook met Ollama. Dat is wel mooi van ollama. Ja, Ik test het thuis wel zo.  check signal!
+afspreken? ja kan wel., 16:15 ben ik thuis.. is 16:30 goed? Kort 2 uurtjes ofzo ja, maar is wel genoeg toch. hoe bedoel je oke? ja donderdag ben ik heel vroeeg uit. Hoe vroeg?
+
+
+         run? wel lange sleep time asangimeint started. Yes sometimes very slow loading.
+        haha I will run again. again. ok
+         The page locator works really bad
+        mischien xpath of zo iets  ? was dat.
+        
+        hieronder   \/
+    '''
     
 '''
-   raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
-playwright._impl._errors.Error: Locator.click: Error: strict mode violation: locator(".css-180i3z1") resolved to 6 elements:
-    1) <span class="css-180i3z1">Doorgaan</span> aka get_by_role("listitem").filter(has_text="Dubbele haakjes wegwerken Doorgaan").get_by_label("Doorgaan")
-    2) <span class="css-180i3z1">Doorgaan</span> aka get_by_role("listitem").filter(has_text="3.4 (V) Merkwaardige").get_by_label("Doorgaan")
-    3) <span class="css-180i3z1">Beginnen</span> aka get_by_role("listitem").filter(has_text="(V) Wortels delen Beginnen").get_by_label("Beginnen")
-    4) <span class="css-180i3z1">Beginnen</span> aka get_by_role("listitem").filter(has_text="3.6 (V) Wortels met breuken").get_by_label("Beginnen")
-    5) <span class="css-180i3z1">Beginnen</span> aka get_by_role("listitem").filter(has_text="3.7 (V+) Werken met cirkels").get_by_label("Beginnen")
-    6) <span class="css-180i3z1">Beginnen</span> aka get_by_role("listitem").filter(has_text="3.8 (V+) Wortels uit de").get_by_label("Beginnen")
-
-Call log:
-  - waiting for locator(".css-180i3z1")
+class="packages-bm-toolbox-src-gizmos-formula-Formula-components-MToken-tokens__mn--PziAM"
+data-testid="mn"
 '''
 
 # Start the bot

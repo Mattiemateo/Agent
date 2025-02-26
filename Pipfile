@@ -4,16 +4,10 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-playwright = "*"
-python-dotenv = "*"
 dotenv = "*"
-easyocr = "*"
-torch = "*"
-numpy = "*"
-pytesseract = "*"
-pillow = "*"
+moondream = "==0.0.5"
 
 [dev-packages]
 
 [requires]
-python_version = "3.12"
+python_version = "3.11"
